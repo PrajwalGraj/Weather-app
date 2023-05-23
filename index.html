@@ -14,9 +14,9 @@
             <button><img src="images/search.png" alt=""></button>
         </div>
         <div class="weather">
-            <img class="weather-icon" src="images/mist.png" alt="">
-            <h1 class="temp">22°c</h1>
-            <h2 class="city">New York</h2>
+            <img class="weather-icon" src="images/hello.png" alt="">
+            <h1 class="temp"> </h1>
+            <h2 class="city">Welcome</h2>
             <div class="details">
                 <div class="col">
                     <img src="images/humidity.png" alt="">
@@ -44,6 +44,7 @@
     const searchBox=document.querySelector(".search input")
     const searchBtn=document.querySelector(".search button")
     const weathericon =document.querySelector(".weather-icon")
+    const bgclr =document.querySelector(".card")
 
     async function checkWeather(city){
         const response =await fetch(apiUrl +city+ `&appid=${apiKey}`);
@@ -55,25 +56,32 @@
         document.querySelector(".temp").innerHTML= Math.round(data.main.temp) +"°c";
         document.querySelector(".humidity").innerHTML=data.main.humidity + "%";
         document.querySelector(".wind").innerHTML=data.wind.speed + "km/h";
+        
 
 
         if(data.weather[0].main == "Clouds"){
             weathericon.src = "images/clouds.png";
+            document.querySelector(".card").style.background="linear-gradient(135deg,rgb(6, 62, 230),rgb(40, 193, 236))"; 
+                
         }
         else if(data.weather[0].main == "Clear"){
             weathericon.src = "images/clear.png";
+            document.querySelector(".card").style.background="linear-gradient(135deg,rgb(230, 92, 6),rgb(235, 193, 66))"; 
         }
         else if(data.weather[0].main == "Rain"){
             weathericon.src = "images/rain.png";
+            document.querySelector(".card").style.background="linear-gradient(135deg,rgb(139, 147, 155),rgb(42, 39, 47))"; 
         }
         else if(data.weather[0].main == "Drizzle"){
             weathericon.src = "images/drizzle.png";
+            document.querySelector(".card").style.background="linear-gradient(135deg,rgb(71, 114, 156),rgb(141, 86, 224))"; 
         }
         else if(data.weather[0].main == "Mist"){
             weathericon.src = "images/mist.png";
+            document.querySelector(".card").style.background="linear-gradient(135deg,rgb(199, 212, 224),rgb(166, 159, 177))"; 
         }
 
-        document.querySelector(".weather").style.display="block";
+        
     }
 
     searchBtn.addEventListener("click",()=>{
